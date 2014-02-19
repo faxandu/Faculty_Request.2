@@ -32,7 +32,12 @@ class labtech_view(viewsets.ModelViewSet):
 def request_save(request):
     post = request.POST
     filedata = file(request.FILES['fileup'])
-    filedata.save()
+
+    destination = open('/var/local/env/django/WCC-Main/main/media/file', 'wb+')
+    for chunk in filedata.chunks():
+        destination.write(chunk)
+    destination.close()
+
     requests = Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
             labtech_Name = User.objects.get(id=post['labtech_Name']),
