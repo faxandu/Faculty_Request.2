@@ -31,7 +31,7 @@ class labtech_view(viewsets.ModelViewSet):
 @require_http_methods(['POST'])
 def request_save(request):
     post = request.POST
-    filedata = file(request.POST['fileup'])
+    filedata = file(request.FILES['fileup'])
     filedata.save()
     requests = Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
