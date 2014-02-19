@@ -37,7 +37,7 @@ class Requests (models.Model):
     due_date=models.DateField()
     request_Type=models.CharField(max_length=20, choices=request_type, default=OTHER)
     request_status=models.CharField(max_length=20,choices=request_status,default=PENDING)     
-    fileup = models.FileField(upload_to = 'media')
+    fileup = models.FileField(upload_to = 'requestfiles')
 
     def __unicode__(self):
         return unicode(self.subject)

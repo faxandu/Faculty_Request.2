@@ -5,9 +5,10 @@ from django.contrib.auth.models import User,Group
 #from rest_framework import viewsets
 #from faculty_request.serializers import faculty_Serializer,admin_Serializer,labtech_Serializer
 from faculty_request.models import Requests
-from django.http import HttpResponse
+#from django.http import HttpResponse
 from django.core import serializers
 from django.views.decorators.http import require_http_methods 
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 '''class faculty_view(viewsets.ModelViewSet):
 	queryset=request.objects.all()
@@ -30,6 +31,8 @@ class labtech_view(viewsets.ModelViewSet):
 @require_http_methods(['POST'])
 def request_save(request):
     post = request.POST
+    filedata = file(request.POST['fileup'])
+    filedata.save()
     requests = Requests(
             faculty_Name = User.objects.get(id=post["faculty_Name"]),
             labtech_Name = User.objects.get(id=post['labtech_Name']),
